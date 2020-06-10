@@ -1,0 +1,9 @@
+{
+
+"station_crs" : "KGX",
+"api_key" : "",
+"station_filter" : "none",
+"calling_points_scroll_speed" : 10,
+"card_switching_speed" : 50
+
+}
