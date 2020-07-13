@@ -56,7 +56,7 @@ def get_data():
         for i in trains[0]['subsequentCallingPointsList'][0]['subsequentCallingPoints']:
             points += i['locationName']
             points += ' ('
-            if i['et'] == 'On time':
+            if i['et'] == 'On time' or i['et'] == None:
                 points += i['st']
             else:
                 points += i['et']
