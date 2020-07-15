@@ -41,7 +41,7 @@ class cards():
             return (self.sch + ' ' + self.plat + ' ' + self.dest + (' ' * int(15 - len(self.plat + ' ' + self.dest))) + self.exp)
         else:
             return (self.sch + ' ' + (self.plat + ' ' + self.dest)[0:14] + ' ' + self.exp)
-        
+
 def get_data():
     r = get(url)
     trains = r.json()['trainServices']
@@ -138,4 +138,7 @@ while True:
     elif len(data) == 0:
         for i in range(2 * card_time):
             image_4()
-    get_data()
+    try:
+        get_data()
+    except:
+        pass
