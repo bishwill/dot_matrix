@@ -21,9 +21,9 @@ time_font = path.dirname(path.realpath(__file__)) + '/time.ttf'
 text_font = path.dirname(path.realpath(__file__)) + '/text.ttf'
 
 if settings['station_filter'] == 'none':
-    url = 'https://api.departureboard.io/api/v2.0/getDeparturesByCRS/' + settings['station_crs'] + '/?apiKey=' + settings['api_key'] + '&numServices=3'
+    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/?accessToken=' + settings['api_key'] + '&numServices=3'
 else:
-    url = 'https://api.departureboard.io/api/v2.0/getDeparturesByCRS/' + settings['station_crs'] + '/?apiKey=' + settings['api_key'] + '&numServices=3&filterStation=' + settings['station_filter']
+    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/?accessToken=' + settings['api_key'] + '&numServices=3&filterStation=' + settings['station_filter']
 
 class cards():
     def __init__(self, sch, plat, dest, exp, call, op):
