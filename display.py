@@ -8,6 +8,8 @@ from requests import get
 from os import path
 from json import load
 
+print('Hello')
+
 config = open(path.dirname(path.realpath(__file__)) + '/config.txt', 'r')
 settings = load(config)
 config.close() 
