@@ -23,7 +23,7 @@ text_font = path.dirname(path.realpath(__file__)) + '/text.ttf'
 if settings['station_filter'] == 'none':
     url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/3/?accessToken=' + settings['api_key']
 else:
-    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/3/?accessToken=' + settings['api_key'] + '&filterStation=' + settings['station_filter']
+    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/to/' + settings['station_filter'] + '/3/?accessToken=' + settings['api_key']
 
 class cards():
     def __init__(self, sch, plat, dest, exp, call, op):
