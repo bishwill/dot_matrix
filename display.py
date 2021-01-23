@@ -21,9 +21,9 @@ time_font = path.dirname(path.realpath(__file__)) + '/time.ttf'
 text_font = path.dirname(path.realpath(__file__)) + '/text.ttf'
 
 if settings['station_filter'] == 'none':
-    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/?accessToken=' + settings['api_key'] + '&numServices=3'
+    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/3/?accessToken=' + settings['api_key']
 else:
-    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/?accessToken=' + settings['api_key'] + '&numServices=3&filterStation=' + settings['station_filter']
+    url = 'https://huxley2.azurewebsites.net/departures/' + settings['station_crs'] + '/3/?accessToken=' + settings['api_key'] + '&filterStation=' + settings['station_filter']
 
 class cards():
     def __init__(self, sch, plat, dest, exp, call, op):
@@ -52,8 +52,9 @@ def get_data():
                 data.append(cards(i['std'], i['platform'], i['destination'][0]['locationName'], i['etd'], '', i['operator']))
             else:
                 data.append(cards(i['std'], ' ', i['destination'][0]['locationName'], i['etd'], '', i['operator']))
+        
         points = ''
-        for i in trains[0]['subsequentCallingPointsList'][0]['subsequentCallingPoints']:
+        for i in get('https://huxley2.azurewebsites.net/service/' + trains[0]['serviceIdGuid']).json()['subsequentCallingPoints'][0]['callingPoint']:
             points += i['locationName']
             points += ' ('
             if i['et'] == 'On time' or i['et'] == None:
@@ -63,6 +64,7 @@ def get_data():
             points += '), '
         points = points[:-2] + '   (' + data[0].op + ')'
         data[0].call = points
+
 
 def scroller():
     global x
